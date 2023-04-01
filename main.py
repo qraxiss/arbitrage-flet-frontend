@@ -5,6 +5,8 @@ from time import sleep
 
 from helpers import thread
 
+from config import FLET_PORT
+
 pairs = {
     "BTC": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
     "ETH": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
@@ -125,7 +127,7 @@ class App:
     def sync(self):
         while True:
             self.update_table()
-            sleep(1)
+            # sleep(1)
 
     def snack(self, msg):
         self.page.snack_bar = ft.SnackBar(ft.Text(msg), action="Ok")
@@ -170,4 +172,4 @@ class App:
             self._popup.items = self.closed_tokens
             self.page.update()
 
-ft.app(App.main)
+ft.app(App.main, port=FLET_PORT, view=None)

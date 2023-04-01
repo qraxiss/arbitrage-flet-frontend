@@ -86,7 +86,7 @@ class App:
     def update_table(self):
         rows = []
         for trade in self.trades:
-            if not trade['profit'] > -5:
+            if not trade['profit'] > 0:
                 continue
 
             pair = ft.Text(trade['pair'])

@@ -127,7 +127,7 @@ class App:
     def sync(self):
         while True:
             self.update_table()
-            # sleep(1)
+            sleep(1)
 
     def snack(self, msg):
         self.page.snack_bar = ft.SnackBar(ft.Text(msg), action="Ok")

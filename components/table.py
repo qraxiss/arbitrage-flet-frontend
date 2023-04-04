@@ -23,10 +23,11 @@ class Table(ft.UserControl):
         self.page = page
         # pprint(self.trades())
         self.config()
+        self.render()
         self.sync()
 
     def build(self):
-        return ft.Column([self.popup, self.table])
+        return ft.Column()
 
     @property
     def table(self):
@@ -118,7 +119,6 @@ class Table(ft.UserControl):
             rows.append(ft.DataRow(cells=cells))
         
         
-        self.table.clean()
         self.table.colums = self.columns
         self.table.rows = rows
         self.page.update()

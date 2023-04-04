@@ -5,6 +5,8 @@ from controllers.login import login
 
 from components.table import Table
 
+from config import FLET_PORT
+
 class Manager:
     def __init__(self, page: ft.Page) -> None:
         self.page = page
@@ -25,4 +27,4 @@ def main(page: ft.Page):
     page.update()
 
 
-ft.app(target=main, view=ft.WEB_BROWSER)
+ft.app(target=main, port = FLET_PORT, view=None)

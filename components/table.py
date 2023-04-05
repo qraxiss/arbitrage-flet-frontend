@@ -91,9 +91,9 @@ class Table(ft.UserControl):
             sell = ft.Text(trade['sell'])
 
 
-            color, sign = ("#50C878", "⬆️") if trade['profit'] > 0 else ("#EE4B2B", "⬇️")
-            usdt = ft.Text(f"{sign}{abs(trade['usdt']):0.4f}$", color=color)
-            profit = ft.Text(f"{sign}{abs(trade['profit']):0.4f}%", color=color)
+            color, sign = ("#FFAC1C", "⬆️") if trade['profit'] > 3 else ("#50C878", "⬆️") if trade['profit'] > 0 else ("#EE4B2B", "⬇️")
+            usdt = ft.Text(f"{sign}{abs(trade['usdt']):0.2f}$", color=color)
+            profit = ft.Text(f"{sign}{abs(trade['profit']):0.2f}%", color=color)
             
             
             on_click = lambda e, x=trade['address']: (self.page.set_clipboard(x), self.snack("Copied to clipboard!"))

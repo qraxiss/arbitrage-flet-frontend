@@ -19,20 +19,25 @@ class Table(ft.UserControl):
 
     def __init__(self, page, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._popup = None
         self.page = page
-        # pprint(self.trades())
-        self.config()
-        self.render()
+        self._popup = None
+        self._table = None
         self.sync()
+        self.render()
 
     def build(self):
-        return ft.Column()
+        return ft.Column([
+            self.popup,
+            self.table
+        ], 
+        horizontal_alignment="center")
 
     @property
     def table(self):
-        if getattr(self, '_table', None) is None:
-            self._table = ft.DataTable()
+        if self._table == None:
+            self._table = ft.DataTable(
+                columns=self.columns
+            )
 
         return self._table
 
@@ -44,14 +49,7 @@ class Table(ft.UserControl):
         ]
 
     def render(self):
-        self.table.columns = self.columns
-        self.page.add(self.popup)
-        self.page.add(self.table)
-
-    def config(self):
-        self.page.title = 'DexScanner'
-        self.page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-        self.page.scroll = "always"
+        self.page.add(self.build())
 
     @property
     def trades(self):
@@ -119,7 +117,6 @@ class Table(ft.UserControl):
             rows.append(ft.DataRow(cells=cells))
         
         
-        self.table.colums = self.columns
         self.table.rows = rows
         self.page.update()
 
